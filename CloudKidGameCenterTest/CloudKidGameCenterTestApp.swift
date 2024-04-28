@@ -1,0 +1,17 @@
+//
+//  CloudKidGameCenterTestApp.swift
+//  CloudKidGameCenterTest
+//
+//  Created by Ghalia Mohammed Al Muaddi on 19/10/1445 AH.
+//
+
+import SwiftUI
+
+@main
+struct CloudKidGameCenterTestApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
