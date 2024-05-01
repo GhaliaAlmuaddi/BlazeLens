@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		906D92CF2BE0011400E2E1F5 /* AddingPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906D92CE2BE0011400E2E1F5 /* AddingPointsView.swift */; };
+		906D92D32BE0CD6900E2E1F5 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906D92D22BE0CD6900E2E1F5 /* ChallengeModel.swift */; };
+		907D045D2BE14FF7006AF67A /* ChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907D045C2BE14FF7006AF67A /* ChallengeViewModel.swift */; };
+		907D045F2BE167FB006AF67A /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907D045E2BE167FB006AF67A /* ChallengeView.swift */; };
+		907D04612BE18462006AF67A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907D04602BE18462006AF67A /* Date.swift */; };
 		908AAD7B2BDEBF3E00D3DBF9 /* CloudKidGameCenterTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908AAD7A2BDEBF3E00D3DBF9 /* CloudKidGameCenterTestApp.swift */; };
 		908AAD7D2BDEBF3E00D3DBF9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908AAD7C2BDEBF3E00D3DBF9 /* ContentView.swift */; };
 		908AAD7F2BDEBF3F00D3DBF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908AAD7E2BDEBF3F00D3DBF9 /* Assets.xcassets */; };
@@ -14,11 +19,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		906D92CE2BE0011400E2E1F5 /* AddingPointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingPointsView.swift; sourceTree = "<group>"; };
+		906D92D22BE0CD6900E2E1F5 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
+		907D045C2BE14FF7006AF67A /* ChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewModel.swift; sourceTree = "<group>"; };
+		907D045E2BE167FB006AF67A /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
+		907D04602BE18462006AF67A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		908AAD772BDEBF3E00D3DBF9 /* CloudKidGameCenterTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudKidGameCenterTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		908AAD7A2BDEBF3E00D3DBF9 /* CloudKidGameCenterTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKidGameCenterTestApp.swift; sourceTree = "<group>"; };
 		908AAD7C2BDEBF3E00D3DBF9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		908AAD7E2BDEBF3F00D3DBF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		908AAD812BDEBF3F00D3DBF9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		908AAD892BDEFC5D00D3DBF9 /* CloudKidGameCenterTest.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = CloudKidGameCenterTest.entitlements; path = CloudKidGameCenterTest/CloudKidGameCenterTest.entitlements; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,9 +43,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		905788C42BE21932009C1747 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				907D04602BE18462006AF67A /* Date.swift */,
+				906D92D22BE0CD6900E2E1F5 /* ChallengeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		905788C52BE21943009C1747 /* ModelView */ = {
+			isa = PBXGroup;
+			children = (
+				907D045C2BE14FF7006AF67A /* ChallengeViewModel.swift */,
+			);
+			path = ModelView;
+			sourceTree = "<group>";
+		};
+		905788C62BE21997009C1747 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				907D045E2BE167FB006AF67A /* ChallengeView.swift */,
+				906D92CE2BE0011400E2E1F5 /* AddingPointsView.swift */,
+				908AAD7C2BDEBF3E00D3DBF9 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		908AAD6E2BDEBF3E00D3DBF9 = {
 			isa = PBXGroup;
 			children = (
+				905788C62BE21997009C1747 /* View */,
+				905788C52BE21943009C1747 /* ModelView */,
+				905788C42BE21932009C1747 /* Model */,
 				908AAD792BDEBF3E00D3DBF9 /* CloudKidGameCenterTest */,
 				908AAD782BDEBF3E00D3DBF9 /* Products */,
 			);
@@ -52,7 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				908AAD7A2BDEBF3E00D3DBF9 /* CloudKidGameCenterTestApp.swift */,
-				908AAD7C2BDEBF3E00D3DBF9 /* ContentView.swift */,
+				908AAD892BDEFC5D00D3DBF9 /* CloudKidGameCenterTest.entitlements */,
 				908AAD7E2BDEBF3F00D3DBF9 /* Assets.xcassets */,
 				908AAD802BDEBF3F00D3DBF9 /* Preview Content */,
 			);
@@ -138,7 +179,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				908AAD7D2BDEBF3E00D3DBF9 /* ContentView.swift in Sources */,
+				907D045F2BE167FB006AF67A /* ChallengeView.swift in Sources */,
+				907D04612BE18462006AF67A /* Date.swift in Sources */,
+				906D92CF2BE0011400E2E1F5 /* AddingPointsView.swift in Sources */,
 				908AAD7B2BDEBF3E00D3DBF9 /* CloudKidGameCenterTestApp.swift in Sources */,
+				907D045D2BE14FF7006AF67A /* ChallengeViewModel.swift in Sources */,
+				906D92D32BE0CD6900E2E1F5 /* ChallengeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CloudKidGameCenterTest/CloudKidGameCenterTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CloudKidGameCenterTest/Preview Content\"";
@@ -298,6 +345,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CloudKidGameCenterTest/CloudKidGameCenterTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CloudKidGameCenterTest/Preview Content\"";

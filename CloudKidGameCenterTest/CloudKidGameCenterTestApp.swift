@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct CloudKidGameCenterTestApp: App {
+    @StateObject var VM = ChallengeViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(VM)
         }
     }
+    
+
 }
