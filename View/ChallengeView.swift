@@ -15,48 +15,42 @@ struct ChallengeView: View {
     var body: some View {
 
         VStack {
-            let currentDate = getCurrentFormattedDate()
-
+            Text("")
+        let currentDate = Date()
         ForEach(ChallengeVM.Challenges) { challenge in
           
-            Text (challenge.challengeName) //to check if the modelView works
-            //المفروض تكون بعد الشرط بس حطيتها هنا اشيك اذا الفتش ضابط ولالا
             
             
-            Text("Wellcome to the Challange view")
-          //  Text("Now date is \(currentDate)")
+            //عشان اشيك عالتواريخ حق كلاود كت والحالي
+            Text(formatDate(challenge.ChallengeStartDate))
+            Text(formatDate(currentDate))
             
             
-//            if (challenge.ChallengeStartDate == currentDate ){
+            
+            //حاطه اكبر عشان اجرب المقارنة بس
+            if ((formatDate(challenge.ChallengeStartDate)) >= (formatDate(currentDate)))
+            {
 //
 //                    
-//                    Text ("\(challenge.challengeName) Challenge is Start now")
-//                    
-//                    let currentDate = Date()
-//                    
-//
-//                }
+                    Text ("\(challenge.challengeName) Challenge is Start now")
+
+              }
                 }
             }.onAppear {
                 ChallengeVM.fetchChallenges()
         }
     }
     
-     func getCurrentFormattedDate() -> String {
-        // Get the current date
-        let currentDate = Date()
 
-        // Create a date formatter
+    
+    func formatDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy, hh:mm:ss.SS"
-        // dateFormatter.dateFormat =  "yyyy-MM-dd HH:mm:ss"
-       // dateFormatter.timeZone = TimeZone(identifier: "UTC")
-
-        // Format the date to string
-        let formattedDate = dateFormatter.string(from: currentDate)
-
-        return formattedDate
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Riyadh")
+        
+        return dateFormatter.string(from: date)
     }
+    
 
 }
     
