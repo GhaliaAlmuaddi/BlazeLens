@@ -12,6 +12,8 @@ import CloudKit
 
 struct GameCenterLoginButton: View {
     //@State private var ProfilePhoto: UIImage?
+    @State private var playerID: String = ""
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -33,7 +35,9 @@ struct GameCenterLoginButton: View {
                     Text("Challange Page")
                 }
                 
-   
+                NavigationLink(destination: uploadPhoto(playerID: playerID)) {
+                    Text("upload photo")
+                }
             }
         }}
     
