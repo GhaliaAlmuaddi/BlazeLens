@@ -8,7 +8,7 @@
 import Foundation
 import CloudKit
 struct ChallengeModel : Identifiable {
-    var challengId : CKRecord.ID?
+    var challengId : CKRecord.ID? 
   
     var challengeName : String
     var ChallengeStartDate : Date

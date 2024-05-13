@@ -9,7 +9,7 @@ import Foundation
 
 import CloudKit
 
-class ViewModel: ObservableObject{
+class postViewModel: ObservableObject{
     
     @Published var posts : [postModel] = []
     let container = CKContainer(identifier: "iCloud.l.CloudKidGameCenterTest")
@@ -33,6 +33,35 @@ class ViewModel: ObservableObject{
         
         CKContainer(identifier: "iCloud.l.CloudKidGameCenterTest").publicCloudDatabase.add(operation)
     }
+    
+    func createPostRecord(PostRecord: postModel, completion: @escaping (Error?) -> Void)->CKRecord {
+        let record = CKRecord(recordType: "challengePost")
+        
+        //CKRecord.Reference(recordID: userId!, action: .none)
+        record["voting_Counter"] = PostRecord.voting_Counter
+        record["photo"] = PostRecord.photo
+        // record["user_id"] = CKRecord.Reference(recordID: userId!, action: .none)
+        record["user_id"] = PostRecord.user_id as CKRecordValue
+         
+         // Set the challengeId as a CKRecord.Reference to the ChallengeRecord
+         let challengeRecordID = PostRecord.challengeId
+         let challengeRecordReference = CKRecord.Reference(recordID: challengeRecordID, action: .none)
+         record["challengeId"] = challengeRecordReference
+        
+        //Set image
+     
+        
+        CKContainer(identifier: "iCloud.l.CloudKidGameCenterTest").publicCloudDatabase.save(record) { (savedRecord, error) in
+            completion(error)
+        }
+        
+        return record
+    }
+    
+    
+    
+    
+    
     func cloudKitImageURL(for brandLogo: CKAsset?) -> URL? {
         guard let brandLogo = brandLogo, let fileURL = brandLogo.fileURL else {
             return nil
@@ -48,7 +77,7 @@ class ViewModel: ObservableObject{
                 print("Error fetching record: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
-            
+
             // Update the vote counter in the record
             record["voting_Counter"] = newVoteCount
             
@@ -66,4 +95,9 @@ class ViewModel: ObservableObject{
             }
         }
     }
+    
+    
+    
+    
+
 }

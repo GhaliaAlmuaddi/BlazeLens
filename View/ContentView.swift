@@ -31,12 +31,12 @@ struct GameCenterLoginButton: View {
                     Text("PointsPage")
                 }
                 
-                NavigationLink(destination: ChallengeView()) {
-                    Text("Challange Page")
-                }
+//                NavigationLink(destination: ChallengeView( challenge: <#ChallengeModel#>)) {
+//                    Text("Challange Page")
+//                }
                 
-                NavigationLink(destination: uploadPhoto(playerID: playerID)) {
-                    Text("upload photo")
+                NavigationLink(destination: ExploreView()) {
+                    Text("Explore page")
                 }
             }
         }}
@@ -122,8 +122,7 @@ struct GameCenterLoginButton: View {
     struct ContentView: View {
         var body: some View {
             VStack {
-                Text("Hi")
-                    .font(.title)
+                
                 GameCenterLoginButton()
             }
         }

@@ -13,6 +13,8 @@ struct postModel: Identifiable {
     var voting_Counter: Int
     let photo: CKAsset?
     let user_id: String
+    let challengeId: CKRecord.ID //Here Ghalia
+    
     
     
     init(record: CKRecord) {
@@ -20,6 +22,12 @@ struct postModel: Identifiable {
         self.voting_Counter = record["voting_Counter"] as? Int ?? 0
         self.photo = record["photo"] as? CKAsset
         self.user_id = record["user_id"] as? String ?? "N/A"
-       
+        "N/A"
+        
+        
+        self.challengeId = record["challengeId"] as? CKRecord.ID ?? CKRecord.ID(recordName: "") // Assuming you set this field in your database //Here Ghalia
+        
+        
+           }
     }
-}
+

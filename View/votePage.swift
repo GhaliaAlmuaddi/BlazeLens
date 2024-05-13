@@ -9,14 +9,14 @@ import SwiftUI
 import CloudKit
 
 struct votePage: View {
-    @StateObject var viewModel = ViewModel()
+    @StateObject var viewModel = postViewModel()
     @State var vote : Int = 0
     let container = CKContainer(identifier: "iCloud.l.CloudKidGameCenterTest")
     var body: some View {
         VStack{
             
             ForEach(viewModel.posts.indices, id: \.self) { index in
-                           var post = viewModel.posts[index]
+                var post = viewModel.posts[index]
             HStack{
                 AsyncImage(url: viewModel.cloudKitImageURL(for: post.photo)) { phase in
                     switch phase {

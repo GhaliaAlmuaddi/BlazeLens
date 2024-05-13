@@ -10,7 +10,8 @@ import CloudKit
 
 class ChallengeViewModel : ObservableObject {
     @Published var Challenges : [ChallengeModel] = []
- 
+    
+    
     
     func fetchChallenges (){
 
@@ -33,9 +34,6 @@ class ChallengeViewModel : ObservableObject {
                 case .failure(let error):
                     print("\(error.localizedDescription)")
                     
-                    
-                    
-                    
                 }
             }
         }
@@ -52,6 +50,7 @@ class ChallengeViewModel : ObservableObject {
         record["ChallengeEndDate"] = ChallengeRecord.ChallengeEndDate
         record ["VotingStartDate"]=ChallengeRecord.VotingStartDate
         record ["VotingEndDate"]=ChallengeRecord.VotingEndDate
+
    
  
 
@@ -60,6 +59,48 @@ class ChallengeViewModel : ObservableObject {
     }
     }
     
+    
+    
+    func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Riyadh")
+        
+        return dateFormatter.string(from: date)
+    }
+    
+    
+    
+    func formatTime(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Riyadh")
+        
+        return dateFormatter.string(from: date)
+    }
+    
+    
+    
+//    func Current_Challenge () -> ChallengeModel{
+//   
+//        if ((formatDate(Challenges.ChallengeStartDate)) >= (formatDate(currentDate)))
+//            {
+//            
+//            
+//            
+//        }
+//    }
+    
+    
+//    func filteredChallenges() -> [ChallengeModel]{
+//          let currentDate = Date()
+//        return Challenges.filter { $0.ChallengeStartDate <= currentDate }
+//      }
+    
+    
 }
+    
+    
+   
 
         

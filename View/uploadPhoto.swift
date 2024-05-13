@@ -10,6 +10,9 @@ import CloudKit
 import GameKit
 
 struct uploadPhoto: View {
+    
+    @EnvironmentObject var Post : postViewModel
+    
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage?
     let container = CKContainer(identifier: "iCloud.l.CloudKidGameCenterTest")
@@ -20,8 +23,10 @@ struct uploadPhoto: View {
     @State var vote: Int = 0
     @State var userId:  CKRecord.ID?
     
+  //  let challengeReference: CKRecord.Reference
+    
     var body: some View {
-        NavigationView{
+        NavigationView {
         VStack{
             Text("Offer image")
                 .font(.title2)
@@ -72,9 +77,9 @@ struct uploadPhoto: View {
                         .cornerRadius(10)
                 })
             
-            .sheet(isPresented: $showImagePicker) {
-                ImagePickerRepresentable(selectedImage: $selectedImage)
-            }
+//            .sheet(isPresented: $showImagePicker) {
+//                ImagePickerRepresentable(selectedImage: $selectedImage)
+//            }
         }
     }
         .onAppear {
@@ -149,49 +154,58 @@ struct uploadPhoto: View {
     
     func createPostRecord()->CKRecord{
         let record = CKRecord(recordType: "challengePost")
-        
+     //   record["challengeId"] = "A2DACE2A-DEC9-42CF-86F4-289B6C7C46D1"
        //CKRecord.Reference(recordID: userId!, action: .none)
         record["voting_Counter"] = vote
         record["photo"] = photo
        // record["user_id"] = CKRecord.Reference(recordID: userId!, action: .none)
         record["user_id"] = fetchedPlayerID
-
-        //Set image
+       //record["challenge"] = CKRecord.Reference(recordID: challengeRecordID, action: .deleteSelf)
+      //Set image
+        
+        //record["challengeId"] = "A2DACE2A-DEC9-42CF-86F4-289B6C7C46D1"
+//        let challengeRecordReference = CKRecord.Reference(recordID: challengeId, action: .none)
+//            record["challengeId"] = challengeRecordReference
         return record
     }
     
-    func savePost() {
-        
-        getphotoRecord { postRecord in
-            guard let postRecord = postRecord else {
-                return
-            }
+     func savePost() {
+         
+         getphotoRecord { postRecord in
+             guard let postRecord = postRecord else {
+                 return
+             }
 
-            if let selectedImage = selectedImage {
-                if let photoAsset = photoToCKAsset(selectedImage: selectedImage) {
-                    // Use brandLogoAsset in your CKRecord
-                    let challengepost = createPostRecord()
-                    challengepost["photo"] = photoAsset
-                    print(photoAsset)
-                    //postRecord["Player"] = CKRecord.Reference(recordID: challengepost.recordID, action: .none)
-                    //challengepost["user_id"] = fetchedPlayerID
-                    container.publicCloudDatabase.modifyRecords(saving: [challengepost, postRecord], deleting: []) { result in
-                        switch result {
-                        case .success(_):
-                            // Show success alert or perform any other actions
-                            break
-                        case .failure(let error):
-                            print("Error: \(error)")
-                        }
-                    }
-                } else {
-                    print("Error converting UIImage to CKAsset")
-                }
-            } else {
-                // Handle case when no image is selected
-            }
-        }
-    }
+             if let selectedImage = selectedImage {
+                 if let photoAsset = photoToCKAsset(selectedImage: selectedImage) {
+                     // Use brandLogoAsset in your CKRecord
+                     let challengepost = createPostRecord()
+                     challengepost["photo"] = photoAsset
+                     print(photoAsset)
+                     //postRecord["Player"] = CKRecord.Reference(recordID: challengepost.recordID, action: .none)
+                     //challengepost["user_id"] = fetchedPlayerID
+                     container.publicCloudDatabase.modifyRecords(saving: [challengepost, postRecord], deleting: []) { result in
+                         switch result {
+                         case .success(_):
+                             // Show success alert or perform any other actions
+                             break
+                         case .failure(let error):
+                             print("Error: \(error)")
+                         }
+                     }
+                 } else {
+                     print("Error converting UIImage to CKAsset")
+                 }
+             } else {
+                 // Handle case when no image is selected
+             }
+         }
+     }
+
+    
+    
+    
+    
     func photoToCKAsset(selectedImage: UIImage?) -> CKAsset? {
         guard let selectedImage = selectedImage,
               let imageData = selectedImage.pngData() else {
