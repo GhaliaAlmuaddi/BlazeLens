@@ -38,6 +38,9 @@ struct GameCenterLoginButton: View {
                 NavigationLink(destination: ExploreView()) {
                     Text("Explore page")
                 }
+                NavigationLink(destination: votePage()) {
+                    Text("vote")
+                }
             }
         }}
     

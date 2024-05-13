@@ -13,6 +13,11 @@ class postViewModel: ObservableObject{
     
     @Published var posts : [postModel] = []
     let container = CKContainer(identifier: "iCloud.l.CloudKidGameCenterTest")
+    @Published var showImageViewer = false
+    @Published var selectedImagesID: String = ""
+    @Published var selectedPost: postModel?
+    @Published var selectedPostID: URL?
+    
     
     func fetchposts() {
         let predicate = NSPredicate(value: true)
@@ -34,6 +39,27 @@ class postViewModel: ObservableObject{
         CKContainer(identifier: "iCloud.l.CloudKidGameCenterTest").publicCloudDatabase.add(operation)
     }
     
+//    func fetchposts() {
+//          let predicate = NSPredicate(value: true)
+//          let query = CKQuery(recordType: "challengePost", predicate: predicate)
+//          
+//          container.publicCloudDatabase.perform(query, inZoneWith: nil) { records, error in
+//              if let error = error {
+//                  print("Error fetching posts: \(error.localizedDescription)")
+//                  return
+//              }
+//              
+//              guard let records = records else {
+//                  print("No records found")
+//                  return
+//              }
+//              
+//              DispatchQueue.main.async {
+//                  self.posts = records.map { postModel(record: $0) }
+//              }
+//          }
+//      }
+
     func createPostRecord(PostRecord: postModel, completion: @escaping (Error?) -> Void)->CKRecord {
         let record = CKRecord(recordType: "challengePost")
         
@@ -45,7 +71,7 @@ class postViewModel: ObservableObject{
          
          // Set the challengeId as a CKRecord.Reference to the ChallengeRecord
          let challengeRecordID = PostRecord.challengeId
-         let challengeRecordReference = CKRecord.Reference(recordID: challengeRecordID, action: .none)
+         let challengeRecordReference = CKRecord.Reference(recordID: challengeRecordID!, action: .none)
          record["challengeId"] = challengeRecordReference
         
         //Set image
@@ -97,7 +123,25 @@ class postViewModel: ObservableObject{
     }
     
     
-    
+    func getPost(for post: postModel, completion: @escaping (Int?) -> Void) {
+        // Fetch the CKRecord for the post
+        let recordID = CKRecord.ID(recordName: post.id.recordName)
+        container.publicCloudDatabase.fetch(withRecordID: recordID) { record, error in
+            guard let record = record, error == nil else {
+                print("Error fetching record: \(error?.localizedDescription ?? "Unknown error")")
+                completion(nil)
+                return
+            }
+            
+            // Extract the vote counter from the record
+            if let voteCounter = record["voting_Counter"] as? Int {
+                completion(voteCounter)
+            } else {
+                // If the vote counter is not found or cannot be cast to Int, return nil
+                completion(nil)
+            }
+        }
+    }
     
 
 }

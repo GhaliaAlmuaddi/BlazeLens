@@ -8,12 +8,12 @@
 import Foundation
 import CloudKit
 
-struct postModel: Identifiable {
+struct postModel: Identifiable, Hashable {
     let id: CKRecord.ID
     var voting_Counter: Int
     let photo: CKAsset?
     let user_id: String
-    let challengeId: CKRecord.ID //Here Ghalia
+    let challengeId: CKRecord.ID?//Here Ghalia
     
     
     
@@ -25,9 +25,9 @@ struct postModel: Identifiable {
         "N/A"
         
         
-        self.challengeId = record["challengeId"] as? CKRecord.ID ?? CKRecord.ID(recordName: "") // Assuming you set this field in your database //Here Ghalia
+        self.challengeId = record["challengeId"] as? CKRecord.ID // Assuming you set this field in your database //Here Ghalia
         
-        
+       // ?? CKRecord.ID(recordName: "")
            }
     }
 
