@@ -68,9 +68,9 @@ struct GridImageView: View {
   
 }
 
-#Preview {
-    votePage()
-}
+//#Preview {
+//    votePage()
+//}
 
 extension View{
     func getRect()->CGRect{

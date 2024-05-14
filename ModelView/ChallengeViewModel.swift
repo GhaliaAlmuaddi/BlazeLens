@@ -12,6 +12,7 @@ class ChallengeViewModel : ObservableObject {
     @Published var Challenges : [ChallengeModel] = []
     
     
+
     
     func fetchChallenges (){
 

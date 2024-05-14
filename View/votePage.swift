@@ -22,6 +22,9 @@ struct votePage: View {
     @State private var isShowingPopUp = false
     @State var selectedPhoto: postModel? = nil // Track the selected photo
         @State private var isShowingDetailView = false
+    let challengeID: CKRecord.ID
+    let challenge: ChallengeModel
+    @StateObject var ChallengeVM = ChallengeViewModel()
     
     var body: some View {
         NavigationStack{
@@ -34,22 +37,34 @@ struct votePage: View {
                         .foregroundColor(.gray)
                         .font(.callout)
                     
-
+//                    ForEach(ChallengeVM.Challenges){ challenge in
+//                        if challenge.id == challengeId{
+//                            Text("\(challenge.VotingStartDate)")
+//                        }
+//                    }
+                    
+                    Text("\(formatTime(challenge.VotingStartDate))")
+                        .bold()
+                        .font(.title2)
+                    
                     
                     ScrollView {
                         
                         let columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: 2)
                         LazyVGrid(columns: columns, alignment: .center,spacing: 10, content:{
-
+                            //ForEach(ChallengeVM.Challenges, id: \.self) { challeng in
+                                
                                 ForEach(viewModel.posts.indices, id: \.self) { index in
-                                   
-                                        
-                                   
-                                        GridImageView(index: index)
-
+                                    let post = viewModel.posts[index]
+                                    Text("\(post.challengeId)")
                                     
+                                    if  challengeID == post.challengeId {
+                                        
+                                        GridImageView(index: index)
+                                        
                                 }
-                            
+                            }
+                        //}
                         }).padding(.top)
                             
                        
@@ -109,6 +124,6 @@ struct votePage: View {
    
 }
 
-#Preview {
-    votePage()
-}
+//#Preview {
+//    votePage()
+//}

@@ -96,7 +96,7 @@ struct ImageView: View {
 
 
 
-#Preview {
-    votePage()
-}
+//#Preview {
+//    votePage()
+//}
 

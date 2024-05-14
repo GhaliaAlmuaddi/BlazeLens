@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		391F8A182BF33F5500184CFB /* winnersPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F8A172BF33F5500184CFB /* winnersPop.swift */; };
+		391F8A1A2BF3412A00184CFB /* userProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F8A192BF3412A00184CFB /* userProfile.swift */; };
+		391F8A1C2BF3E47400184CFB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F8A1B2BF3E47400184CFB /* SplashView.swift */; };
+		391F8A1E2BF3FA0D00184CFB /* ExploerView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F8A1D2BF3FA0D00184CFB /* ExploerView2.swift */; };
 		39572E432BE22E8E00384B4A /* postViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572E422BE22E8E00384B4A /* postViewModel.swift */; };
 		39572E452BE22EB600384B4A /* postModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572E442BE22EB600384B4A /* postModel.swift */; };
 		39572E472BE22F1B00384B4A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572E462BE22F1B00384B4A /* ImagePicker.swift */; };
@@ -29,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		391F8A172BF33F5500184CFB /* winnersPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = winnersPop.swift; sourceTree = "<group>"; };
+		391F8A192BF3412A00184CFB /* userProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userProfile.swift; sourceTree = "<group>"; };
+		391F8A1B2BF3E47400184CFB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		391F8A1D2BF3FA0D00184CFB /* ExploerView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploerView2.swift; sourceTree = "<group>"; };
 		39572E422BE22E8E00384B4A /* postViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postViewModel.swift; sourceTree = "<group>"; };
 		39572E442BE22EB600384B4A /* postModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postModel.swift; sourceTree = "<group>"; };
 		39572E462BE22F1B00384B4A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -96,6 +104,10 @@
 				39AD17F72BF1FA6F00BBFA05 /* ImageView.swift */,
 				39AD17F92BF1FA8E00BBFA05 /* GridImageView.swift */,
 				903DEE3B2BE78F2B008D98AB /* ExploreView.swift */,
+				391F8A1D2BF3FA0D00184CFB /* ExploerView2.swift */,
+				391F8A172BF33F5500184CFB /* winnersPop.swift */,
+				391F8A192BF3412A00184CFB /* userProfile.swift */,
+				391F8A1B2BF3E47400184CFB /* SplashView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,12 +220,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				391F8A1A2BF3412A00184CFB /* userProfile.swift in Sources */,
 				39572E432BE22E8E00384B4A /* postViewModel.swift in Sources */,
 				908AAD7D2BDEBF3E00D3DBF9 /* ContentView.swift in Sources */,
 				907D045F2BE167FB006AF67A /* ChallengeView.swift in Sources */,
 				907D04612BE18462006AF67A /* Date.swift in Sources */,
 				39572E452BE22EB600384B4A /* postModel.swift in Sources */,
 				39AD17FC2BF1FEB800BBFA05 /* votePop.swift in Sources */,
+				391F8A1E2BF3FA0D00184CFB /* ExploerView2.swift in Sources */,
 				39AD17FE2BF1FF7500BBFA05 /* todayPhotoChallenge.swift in Sources */,
 				906D92CF2BE0011400E2E1F5 /* AddingPointsView.swift in Sources */,
 				908AAD7B2BDEBF3E00D3DBF9 /* CloudKidGameCenterTestApp.swift in Sources */,
@@ -222,7 +236,9 @@
 				39572E4B2BE22F8300384B4A /* votePage.swift in Sources */,
 				39572E492BE22F4C00384B4A /* uploadPhoto.swift in Sources */,
 				907D045D2BE14FF7006AF67A /* ChallengeViewModel.swift in Sources */,
+				391F8A182BF33F5500184CFB /* winnersPop.swift in Sources */,
 				39AD17F82BF1FA6F00BBFA05 /* ImageView.swift in Sources */,
+				391F8A1C2BF3E47400184CFB /* SplashView.swift in Sources */,
 				39AD17FA2BF1FA8E00BBFA05 /* GridImageView.swift in Sources */,
 				906D92D32BE0CD6900E2E1F5 /* ChallengeModel.swift in Sources */,
 			);

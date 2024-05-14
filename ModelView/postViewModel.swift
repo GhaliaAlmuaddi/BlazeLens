@@ -18,6 +18,23 @@ class postViewModel: ObservableObject{
     @Published var selectedPost: postModel?
     @Published var selectedPostID: URL?
     
+    func highestVotedPost(posts: [postModel]) -> postModel? {
+        guard !posts.isEmpty else {
+            return nil
+        }
+        
+        var highestVotedPost: postModel? = nil
+        var highestVoteCount = 0
+        
+        for post in posts {
+            if post.voting_Counter > highestVoteCount {
+                highestVotedPost = post
+                highestVoteCount = post.voting_Counter
+            }
+        }
+        
+        return highestVotedPost
+    }
     
     func fetchposts() {
         let predicate = NSPredicate(value: true)

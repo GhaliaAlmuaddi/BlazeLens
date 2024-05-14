@@ -22,6 +22,8 @@ struct uploadPhoto: View {
     @State var photo: CKAsset?
     @State var vote: Int = 0
     @State var userId:  CKRecord.ID?
+    let challengeId: CKRecord.ID
+    let challenge: ChallengeModel
     
   //  let challengeReference: CKRecord.Reference
     
@@ -67,7 +69,7 @@ struct uploadPhoto: View {
             
             
             NavigationLink(
-                destination: votePage(), // Destination view
+                destination: votePage(challengeID: challenge.id, challenge: challenge), // Destination view
                
                 label: {
                     Text("see photos")
