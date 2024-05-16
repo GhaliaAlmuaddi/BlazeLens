@@ -1,3 +1,4 @@
+
 //
 //  AddingPointsView.swift
 //  CloudKidGameCenterTest
@@ -7,21 +8,25 @@
 
 //import SwiftUI
 //import GameKit
-
 import SwiftUI
 import GameKit
 
 struct AddingPointsView: View {
     @State private var gameCenterScore: Int = 0
     @State private var isGameCenterAuthenticated = false
-
+    @State private var currentPlayerID: String?
+    
+    @StateObject var viewModel = postViewModel()
+    @State private var totalVoting: Int = 0
+    
     var body: some View {
         VStack {
             Button(action: {
-               // authenticateWithGameCenter()
-
-                submitScoreToLeaderboard()
-            }) {
+                // Call calculateTotalVotingCount to get the total voting count for the current user
+                calculateTotalVotingCount()
+                
+            })
+            {
                 Text("Add Point")
                     .padding()
                     .foregroundColor(.white)
@@ -37,11 +42,29 @@ struct AddingPointsView: View {
         }
         .onAppear {
             authenticateWithGameCenter()
-            loadGameCenterScore()
+         //   viewModel.fetchposts()
         }
     }
     
-    func authenticateWithGameCenter() {
+    func calculateTotalVotingCount() {
+        guard let currentPlayerID = currentPlayerID else {
+            print("Current player ID is nil.")
+            return
+        }
+        
+        // Filter posts for the current user using the player ID
+        let currentUserPosts = viewModel.posts.filter { $0.user_id == currentPlayerID }
+        
+        // Calculate total voting count for the user's posts
+        totalVoting = currentUserPosts.reduce(0) { $0 + $1.voting_Counter }
+        
+        // Update the Game Center score with the new voting count
+        print(totalVoting)
+        updateGameCenterScore(score: totalVoting)
+    }
+
+    
+   func authenticateWithGameCenter() {
         GKLocalPlayer.local.authenticateHandler = { viewController, error in
             if let viewController = viewController {
                 UIApplication.shared.windows.first?.rootViewController?.present(viewController, animated: true, completion: nil)
@@ -50,30 +73,32 @@ struct AddingPointsView: View {
             } else {
                 print("Local player authenticated")
                 isGameCenterAuthenticated = true
+                currentPlayerID = GKLocalPlayer.local.playerID // Set currentPlayerID upon successful authentication
+             //   calculateTotalVotingCount() // Calculate the total voting count once the player ID is set
             }
         }
     }
+
     
-    func submitScoreToLeaderboard() {
+    func updateGameCenterScore(score: Int) {
         guard isGameCenterAuthenticated else {
             print("Cannot submit score to Game Center. User not authenticated.")
             return
         }
         
-        let newScore = gameCenterScore + 1
         let scoreReporter = GKScore(leaderboardIdentifier: "055001")
-        scoreReporter.value = Int64(newScore)
+        scoreReporter.value = Int64(score)
         
         GKScore.report([scoreReporter]) { error in
             if let error = error {
-                print("Failed to report score: \(error.localizedDescription)")
+                print("Failed to report score to Game Center: \(error.localizedDescription)")
             } else {
-                print("Score \(newScore) submitted to Game Center")
-                gameCenterScore = newScore
+                print("Score \(score) submitted to Game Center")
+                gameCenterScore = score // Update local gameCenterScore state
             }
         }
     }
-    
+
     func loadGameCenterScore() {
         guard isGameCenterAuthenticated else {
             print("Cannot load Game Center score. User not authenticated.")
@@ -94,7 +119,10 @@ struct AddingPointsView: View {
         }
     }
     
+    
+    
     func displayLeaderboard() {
+        loadGameCenterScore()
         let gcViewController = GKGameCenterViewController()
         gcViewController.leaderboardIdentifier = "055001"
         gcViewController.viewState = .leaderboards
