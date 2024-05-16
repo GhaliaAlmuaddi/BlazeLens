@@ -13,7 +13,8 @@ struct postModel: Identifiable, Hashable {
     var voting_Counter: Int
     let photo: CKAsset?
     let user_id: String
-    let challengeId: CKRecord.ID?//Here Ghalia
+    let challengeId: CKRecord.Reference?
+    //CKRecord.ID?//Here Ghalia
     
     
     
@@ -25,7 +26,8 @@ struct postModel: Identifiable, Hashable {
         "N/A"
         
         
-        self.challengeId = record["challengeId"] as? CKRecord.ID // Assuming you set this field in your database //Here Ghalia
+        self.challengeId = record["challengeId"] as? CKRecord.Reference
+        //record["challengeId"] as? CKRecord.ID // Assuming you set this field in your database //Here Ghalia
         
        // ?? CKRecord.ID(recordName: "")
            }

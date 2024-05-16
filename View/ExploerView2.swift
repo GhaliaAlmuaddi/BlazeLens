@@ -21,7 +21,7 @@ struct ExploerView2: View {
                
                     ToolbarItem(placement: .navigationBarLeading) {
                         NavigationLink {
-                           userProfile()
+                           ExploreView()
                         } label: {
                             Image(systemName: "arrowshape.backward.fill")
                             
@@ -41,12 +41,218 @@ struct ExploerView2: View {
        
             
            // explorehead()
-            VStack/*(spacing: 20)*/ {
-           winnerimages()
-                    .offset(y:-100)
-                
-            }
-
+//            VStack/*(spacing: 20)*/ {
+//           winnerimages()
+//                    .offset(y:-100)
+//                
+//            }
+                ScrollView {
+                    VStack(spacing: 8) {
+                        ZStack() {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 343, height: 497)
+                                .background(
+                                    LinearGradient(gradient: Gradient(colors: [Color(red: 0.85, green: 0.85, blue: 0.85).opacity(0), Color(red: 0, green: 0, blue: 0).opacity(0.70)]), startPoint: .top, endPoint: .bottom)
+                                )
+                                .offset(x: 0, y: 41.50)
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 343, height: 94)
+                                .background(Color(red: 0.91, green: 0.91, blue: 0.91))
+                                .offset(x: 0, y: 178)
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 47.21, height: 29)
+                                .background(
+                                    AsyncImage(url: URL(string: "https://via.placeholder.com/47x29"))
+                                )
+                                .offset(x: 158.49, y: 231.50)
+                                .shadow(
+                                    color: Color(red: 0.24, green: 0.50, blue: 0.85, opacity: 0.75), radius: 4, y: 2
+                                )
+                            ZStack() {
+                                Image("winner2")
+                                    .resizable()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 120.80, height: 153)
+                                    .offset(x: 0, y: 0)
+                                    .offset(x: -2.89, y: 12.50)
+                            }
+                            .frame(width: 110.80, height: 153)
+                            .offset(x: -116.10, y: -152.50)
+                        }
+                        .frame(width: 343, height: 414)
+                        .background(
+                            Image("coffee1")
+                        )
+                        .cornerRadius(24)
+                        
+                        ZStack() {
+                            // Winner name (comes from database)
+                            Text("gh_12")
+                                .font(Font.custom("SF Pro", size: 24).weight(.bold))
+                                .foregroundColor(.black)
+                                .offset(x: -80.51, y: -1.87)
+                            
+                            HStack() {
+                                // 99K (comes from database)
+                                Text("99K")
+                                    .font(Font.custom("SF Pro", size: 20))
+                                    .foregroundColor(.black)
+                                    .offset(x: 0, y: -2.46)
+                                    
+                                Image("fire")
+                                    .resizable()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 40, height: 46)
+                                    .offset(x: 0, y: -2.46) // Adjusted offset to reduce space
+                            }
+                            .frame(width: 96.87, height: 24)
+                            .offset(x: 127.15, y: 1)
+                        }
+                        .frame(width: 333, height: 26)
+                        .offset(x: 0, y: -50)
+                    }
+                    //
+                    VStack(spacing: 8) {
+                        ZStack() {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 343, height: 497)
+                                .background(
+                                    LinearGradient(gradient: Gradient(colors: [Color(red: 0.85, green: 0.85, blue: 0.85).opacity(0), Color(red: 0, green: 0, blue: 0).opacity(0.70)]), startPoint: .top, endPoint: .bottom)
+                                )
+                                .offset(x: 0, y: 41.50)
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 343, height: 94)
+                                .background(Color(red: 0.91, green: 0.91, blue: 0.91))
+                                .offset(x: 0, y: 178)
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 47.21, height: 29)
+                                .background(
+                                    AsyncImage(url: URL(string: "https://via.placeholder.com/47x29"))
+                                )
+                                .offset(x: 158.49, y: 231.50)
+                                .shadow(
+                                    color: Color(red: 0.24, green: 0.50, blue: 0.85, opacity: 0.75), radius: 4, y: 2
+                                )
+                            ZStack() {
+                                Image("win2")
+                                    .resizable()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 120.80, height: 153)
+                                    .offset(x: 0, y: 0)
+                                    .offset(x: -2.89, y: 12.50)
+                            }
+                            .frame(width: 110.80, height: 153)
+                            .offset(x: -116.10, y: -152.50)
+                        }
+                        .frame(width: 343, height: 414)
+                        .background(
+                            Image("coffee2")
+                        )
+                        .cornerRadius(24)
+                        
+                        ZStack() {
+                            // Winner name (comes from database)
+                            Text("mm_h53")
+                                .font(Font.custom("SF Pro", size: 24).weight(.bold))
+                                .foregroundColor(.black)
+                                .offset(x: -80.51, y: -1.87)
+                            
+                            HStack() {
+                                // 99K (comes from database)
+                                Text("99K")
+                                    .font(Font.custom("SF Pro", size: 20))
+                                    .foregroundColor(.black)
+                                    .offset(x: 0, y: -2.46)
+                                    
+                                Image("fire")
+                                    .resizable()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 40, height: 46)
+                                    .offset(x: 0, y: -2.46)
+                            }
+                            .frame(width: 96.87, height: 24)
+                            .offset(x: 127.15, y: 1)
+                        }
+                        .frame(width: 333, height: 26)
+                        .offset(x: 0, y: -50)
+                    }
+                    //
+                    VStack(spacing: 8) {
+                        ZStack() {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 343, height: 497)
+                                .background(
+                                    LinearGradient(gradient: Gradient(colors: [Color(red: 0.85, green: 0.85, blue: 0.85).opacity(0), Color(red: 0, green: 0, blue: 0).opacity(0.70)]), startPoint: .top, endPoint: .bottom)
+                                )
+                                .offset(x: 0, y: 41.50)
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 343, height: 94)
+                                .background(Color(red: 0.91, green: 0.91, blue: 0.91))
+                                .offset(x: 0, y: 178)
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 47.21, height: 29)
+                                .background(
+                                    AsyncImage(url: URL(string: "https://via.placeholder.com/47x29"))
+                                )
+                                .offset(x: 158.49, y: 231.50)
+                                .shadow(
+                                    color: Color(red: 0.24, green: 0.50, blue: 0.85, opacity: 0.75), radius: 4, y: 2
+                                )
+                            ZStack() {
+                                Image("win3")
+                                    .resizable()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 120.80, height: 153)
+                                    .offset(x: 0, y: 0)
+                                    .offset(x: -2.89, y: 12.50)
+                            }
+                            .frame(width: 110.80, height: 153)
+                            .offset(x: -116.10, y: -152.50)
+                        }
+                        .frame(width: 343, height: 414)
+                        .background(
+                            Image("coffee3")
+                        )
+                        .cornerRadius(24)
+                        
+                        ZStack() {
+                            // Winner name (comes from database)
+                            Text("sa-d66")
+                                .font(Font.custom("SF Pro", size: 24).weight(.bold))
+                                .foregroundColor(.black)
+                                .offset(x: -80.51, y: -1.87)
+                            
+                            HStack() {
+                                // 99K (comes from database)
+                                Text("99K")
+                                    .font(Font.custom("SF Pro", size: 20))
+                                    .foregroundColor(.black)
+                                    .offset(x: 0, y: -2.46)
+                                    
+                                Image("fire")
+                                    .resizable()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 40, height: 46)
+                                    .offset(x: 0, y: -2.46)
+                            }
+                            .frame(width: 96.87, height: 24)
+                            .offset(x: 127.15, y: 1)
+                        }
+                        .frame(width: 333, height: 26)
+                        .offset(x: 0, y: -50)
+                    }
+                }
+//                .frame(width: 390, height: 497)
+//                .offset(x: 2, y: 10)
         }
        // .background(Color("BackgroundColor"))
        
@@ -59,7 +265,7 @@ struct ExploerView2: View {
 }
 struct winnerimages:View {
     var body: some View {
-        ScrollView(.vertical) {
+        ScrollView {
             VStack(spacing: 8) {
                 ZStack() {
                     Rectangle()
@@ -85,7 +291,7 @@ struct winnerimages:View {
                             color: Color(red: 0.24, green: 0.50, blue: 0.85, opacity: 0.75), radius: 4, y: 2
                         )
                     ZStack() {
-                        Image("win1")
+                        Image("winner2")
                             .resizable()
                             .foregroundColor(.clear)
                             .frame(width: 120.80, height: 153)
@@ -97,13 +303,13 @@ struct winnerimages:View {
                 }
                 .frame(width: 343, height: 414)
                 .background(
-                    Image("coffee")
+                    Image("coffee1")
                 )
                 .cornerRadius(24)
                 
                 ZStack() {
                     // Winner name (comes from database)
-                    Text("Winner name")
+                    Text("gh_12")
                         .font(Font.custom("SF Pro", size: 24).weight(.bold))
                         .foregroundColor(.black)
                         .offset(x: -80.51, y: -1.87)
@@ -115,9 +321,10 @@ struct winnerimages:View {
                             .foregroundColor(.black)
                             .offset(x: 0, y: -2.46)
                             
-                        Image("flame 1")
+                        Image("fire")
+                            .resizable()
                             .foregroundColor(.clear)
-                            .frame(width: 46.42, height: 24)
+                            .frame(width: 40, height: 46)
                             .offset(x: 0, y: -2.46) // Adjusted offset to reduce space
                     }
                     .frame(width: 96.87, height: 24)
@@ -164,13 +371,13 @@ struct winnerimages:View {
                 }
                 .frame(width: 343, height: 414)
                 .background(
-                    Image("coffee")
+                    Image("coffee2")
                 )
                 .cornerRadius(24)
                 
                 ZStack() {
                     // Winner name (comes from database)
-                    Text("Winner name")
+                    Text("mm_h53")
                         .font(Font.custom("SF Pro", size: 24).weight(.bold))
                         .foregroundColor(.black)
                         .offset(x: -80.51, y: -1.87)
@@ -182,10 +389,11 @@ struct winnerimages:View {
                             .foregroundColor(.black)
                             .offset(x: 0, y: -2.46)
                             
-                        Image("flame 1")
+                        Image("fire")
+                            .resizable()
                             .foregroundColor(.clear)
-                            .frame(width: 46.42, height: 24)
-                            .offset(x: 0, y: -2.46) // Adjusted offset to reduce space
+                            .frame(width: 40, height: 46)
+                            .offset(x: 0, y: -2.46)
                     }
                     .frame(width: 96.87, height: 24)
                     .offset(x: 127.15, y: 1)
@@ -231,13 +439,13 @@ struct winnerimages:View {
                 }
                 .frame(width: 343, height: 414)
                 .background(
-                    Image("coffee")
+                    Image("coffee3")
                 )
                 .cornerRadius(24)
                 
                 ZStack() {
                     // Winner name (comes from database)
-                    Text("Winner name")
+                    Text("sa-d66")
                         .font(Font.custom("SF Pro", size: 24).weight(.bold))
                         .foregroundColor(.black)
                         .offset(x: -80.51, y: -1.87)
@@ -249,10 +457,11 @@ struct winnerimages:View {
                             .foregroundColor(.black)
                             .offset(x: 0, y: -2.46)
                             
-                        Image("flame 1")
+                        Image("fire")
+                            .resizable()
                             .foregroundColor(.clear)
-                            .frame(width: 46.42, height: 24)
-                            .offset(x: 0, y: -2.46) // Adjusted offset to reduce space
+                            .frame(width: 40, height: 46)
+                            .offset(x: 0, y: -2.46)
                     }
                     .frame(width: 96.87, height: 24)
                     .offset(x: 127.15, y: 1)

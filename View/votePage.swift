@@ -22,9 +22,15 @@ struct votePage: View {
     @State private var isShowingPopUp = false
     @State var selectedPhoto: postModel? = nil // Track the selected photo
         @State private var isShowingDetailView = false
-    let challengeID: CKRecord.ID
+    //let challengeID: CKRecord.ID
+    @State var challengeId: CKRecord.ID?
     let challenge: ChallengeModel
     @StateObject var ChallengeVM = ChallengeViewModel()
+    
+    let columns = [
+           GridItem(.flexible()),
+           GridItem(.flexible())
+       ]
     
     var body: some View {
         NavigationStack{
@@ -36,12 +42,7 @@ struct votePage: View {
                     Text("Voting start in")
                         .foregroundColor(.gray)
                         .font(.callout)
-                    
-//                    ForEach(ChallengeVM.Challenges){ challenge in
-//                        if challenge.id == challengeId{
-//                            Text("\(challenge.VotingStartDate)")
-//                        }
-//                    }
+
                     
                     Text("\(formatTime(challenge.VotingStartDate))")
                         .bold()
@@ -49,23 +50,16 @@ struct votePage: View {
                     
                     
                     ScrollView {
-                        
-                        let columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: 2)
-                        LazyVGrid(columns: columns, alignment: .center,spacing: 10, content:{
-                            //ForEach(ChallengeVM.Challenges, id: \.self) { challeng in
-                                
-                                ForEach(viewModel.posts.indices, id: \.self) { index in
-                                    let post = viewModel.posts[index]
-                                    Text("\(post.challengeId)")
-                                    
-                                    if  challengeID == post.challengeId {
-                                        
-                                        GridImageView(index: index)
-                                        
-                                }
+                        LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(viewModel.posts.indices, id: \.self) { index in
+                          
+                            if let postChallengeId = viewModel.posts[index].challengeId,
+                                  postChallengeId.recordID == challengeId{
+                                      GridImageView(index: index, challengeId: challenge.id)
+                                  }
                             }
-                        //}
-                        }).padding(.top)
+                    }
+
                             
                        
                                        
@@ -82,12 +76,21 @@ struct votePage: View {
                                   // Clear the selectedPhotos set after submitting the votes
                                  // selectedPhotos.removeAll()
                               }
-                              .frame(width: 343, height: 60)
-                              .background(.buttoncolor)
-                              .cornerRadius(24)
+                              //.frame(width: 343, height: 60)
+                              .font(Font.custom("SF Pro", size: 16).weight(.bold))
+                              .lineSpacing(25.60)
                               .foregroundColor(.white)
-                              .bold()
-                              .padding()
+                              .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                              .frame(width: 343, height: 60)
+                              .background(
+                                  LinearGradient(gradient: Gradient(colors: [Color(red: 0.05, green: 0.23, blue: 0.61), Color(red: 0.24, green: 0.50, blue: 0.85)]), startPoint: .top, endPoint: .bottom)
+                              )
+                              .cornerRadius(24)
+//                              .background(.buttoncolor)
+//                              .cornerRadius(24)
+//                              .foregroundColor(.white)
+//                              .bold()
+//                              .padding()
 
                            
                 })

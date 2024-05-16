@@ -65,13 +65,23 @@ struct ImageView: View {
             VStack{
                 Text("vote")
                     .font(.title3)
-            }.frame(width: 90, height: 32)
-                .background(Color.buttoncolor)
-                .foregroundColor(.white)
-                .cornerRadius(24)
-                .padding(.top, 500)
-                .padding(.leading, 300)
-            
+            }//.frame(width: 90, height: 32)
+//                .background(Color.buttoncolor)
+//                .foregroundColor(.white)
+//                .cornerRadius(24)
+//                .padding(.top, 500)
+//                .padding(.leading, 300)
+            .font(Font.custom("SF Pro", size: 16).weight(.bold))
+            .lineSpacing(25.60)
+            .foregroundColor(.white)
+            .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+            .frame(width: 90, height: 32)
+            .background(
+                LinearGradient(gradient: Gradient(colors: [Color(red: 0.05, green: 0.23, blue: 0.61), Color(red: 0.24, green: 0.50, blue: 0.85)]), startPoint: .top, endPoint: .bottom)
+            )
+            .cornerRadius(24)
+            .padding(.top, 500)
+            .padding(.leading, 300)
             
         }
     }

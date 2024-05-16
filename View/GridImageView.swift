@@ -14,6 +14,8 @@ struct GridImageView: View {
     let container = CKContainer(identifier: "iCloud.l.CloudKidGameCenterTest")
     @State private var isVoteTapped = false
     @State private var voteCount = 0
+    @State var challengeId: CKRecord.ID?
+    
     var body: some View {
         Button(action: {
             withAnimation(.easeInOut){
@@ -21,48 +23,58 @@ struct GridImageView: View {
                 voteData.showImageViewer = true // Set showImageViewer to true
             }
         }, label: {
-            ZStack{
-                if index < voteData.posts.count { // Check if index is within bounds
-                    if let fileURL = voteData.posts[index].photo?.fileURL,
-                       let imageData = try? Data(contentsOf: fileURL) {
-                        Image(uiImage: UIImage(data: imageData)!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: (getRect().width-100)/2, height: 120)
-                            .cornerRadius(12)
-                            .contextMenu {
-                                Button(action: {
-                                    if voteCount < 3{
-                                        voteData.getPost(for: voteData.posts[index]) { voteCounter in
-                                                    if let voteCounter = voteCounter {
-                                                        // Increment the vote counter locally
-                                                        voteData.posts[index].voting_Counter = voteCounter + 1
-                                                        // Optionally, update the vote counter in CloudKit
-                                                        voteData.updateVote(for: voteData.posts[index], newVoteCount: voteCounter + 1)
-                                                        isVoteTapped.toggle()
-                                                    } else {
-                                                        print("Error: Unable to fetch vote counter")
-                                                    }
+            
+               
+               ZStack{
+                   
+                       
+                    if index < voteData.posts.count {
+//                        if let postChallengeId = voteData.posts[index].challengeId,
+//                                               postChallengeId.recordID == challengeId {
+                        if let fileURL = voteData.posts[index].photo?.fileURL,
+                           let imageData = try? Data(contentsOf: fileURL) {
+                            
+                            Image(uiImage: UIImage(data: imageData)!)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: (getRect().width-100)/2, height: 120)
+                                .cornerRadius(12)
+                                .contextMenu {
+                                    Button(action: {
+                                        if voteCount < 3{
+                                            voteData.getPost(for: voteData.posts[index]) { voteCounter in
+                                                if let voteCounter = voteCounter {
+                                                    // Increment the vote counter locally
+                                                    voteData.posts[index].voting_Counter = voteCounter + 1
+                                                    // Optionally, update the vote counter in CloudKit
+                                                    voteData.updateVote(for: voteData.posts[index], newVoteCount: voteCounter + 1)
+                                                    isVoteTapped.toggle()
+                                                } else {
+                                                    print("Error: Unable to fetch vote counter")
                                                 }
+                                            }
+                                        }
+                                        
+                                    }) {
+                                        HStack {
+                                            Image(systemName: isVoteTapped ? "flame.fill" : "flame")
+                                                .foregroundColor(isVoteTapped ? .red : .black) // Change color when filled
+                                            Text("Vote")
+                                        }
                                     }
-                                   
-                                }) {
-                                    HStack {
-                                                        Image(systemName: isVoteTapped ? "flame.fill" : "flame")
-                                                            .foregroundColor(isVoteTapped ? .red : .black) // Change color when filled
-                                                        Text("Vote")
-                                                    }
-                                                    }
-                                               
-                                           }//(isPresented: $isContextMenuVisible)
-//                            .onLongPressGesture {
-//                                                // Show context menu
-//                                                isContextMenuVisible = true
-//                                            }
+                                    
+                                }
+                        
+                        }
+                   // }
                     }
+               
                 }
-            }
-        })
+
+               
+            
+            
+                    })
         
     }
   

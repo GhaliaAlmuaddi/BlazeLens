@@ -26,7 +26,7 @@ struct ChallengeView: View {
     @State var vote: Int = 0
     @State var userId:  CKRecord.ID?
     
-    let challengeId: CKRecord.ID
+    @State var challengeId: CKRecord.ID?
     @State private var challengeRecord: CKRecord?
   
     
@@ -162,19 +162,28 @@ struct ChallengeView: View {
             }
         }
         
-        func createPostRecord()->CKRecord {
-            let record = CKRecord(recordType: "challengePost")
-            //   record["challengeId"] = "A2DACE2A-DEC9-42CF-86F4-289B6C7C46D1"
-            //CKRecord.Reference(recordID: userId!, action: .none)
-            record["voting_Counter"] = vote
-            record["photo"] = photo
-            // record["user_id"] = CKRecord.Reference(recordID: userId!, action: .none)
-            record["user_id"] = fetchedPlayerID
-            record["challengeId"] = CKRecord.Reference(recordID: challengeId, action: .none)
-
-            return record
-        }
+//        func createPostRecord()->CKRecord {
+//            let record = CKRecord(recordType: "challengePost")
+//            //   record["challengeId"] = "A2DACE2A-DEC9-42CF-86F4-289B6C7C46D1"
+//            //CKRecord.Reference(recordID: userId!, action: .none)
+//            record["voting_Counter"] = vote
+//            record["photo"] = photo
+//            // record["user_id"] = CKRecord.Reference(recordID: userId!, action: .none)
+//            record["user_id"] = fetchedPlayerID
+//            record["challengeId"] = CKRecord.Reference(recordID: challengeId, action: .none)
+//
+//            return record
+//        }
+    func createPostRecord()->CKRecord{
+        let record = CKRecord(recordType: "challengePost")
+        record["voting_Counter"] = vote
+        record["photo"] = photo
+        record["user_id"] = fetchedPlayerID
         
+        record["challengeId"] = CKRecord.Reference(recordID: challengeId!, action: .none)
+        //Set image
+        return record
+    }
         func savePost() {
             
             getphotoRecord { postRecord in
@@ -188,7 +197,7 @@ struct ChallengeView: View {
                         let challengepost = createPostRecord()
                         challengepost["photo"] = photoAsset
                         print(photoAsset)
-                        //postRecord["Player"] = CKRecord.Reference(recordID: challengepost.recordID, action: .none)
+                        postRecord["challengePost"] = CKRecord.Reference(recordID: challengepost.recordID, action: .none)
                         //challengepost["user_id"] = fetchedPlayerID
                         container.publicCloudDatabase.modifyRecords(saving: [challengepost, postRecord], deleting: []) { result in
                             switch result {

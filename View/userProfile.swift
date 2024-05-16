@@ -117,7 +117,7 @@ struct userProfile: View {
                                 
                                 ForEach(viewModel.posts.indices, id: \.self) { index in
                                     
-                                    if GKLocalPlayer.local.playerID == viewModel.posts[index].user_id{
+                                    if GKLocalPlayer.local.gamePlayerID == viewModel.posts[index].user_id{
                                         
                                         if let fileURL = viewModel.posts[index].photo?.fileURL,
                                            let imageData = try? Data(contentsOf: fileURL) {

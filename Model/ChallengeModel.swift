@@ -7,7 +7,7 @@
 
 import Foundation
 import CloudKit
-struct ChallengeModel : Identifiable {
+struct ChallengeModel : Identifiable, Hashable {
     var challengId : CKRecord.ID? 
   
     var challengeName : String
