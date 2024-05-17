@@ -32,12 +32,13 @@ struct ChallengeView: View {
     
     var body: some View {
         ZStack {
+            Color(.backgroungC)
+                .ignoresSafeArea()
             VStack {
                 
-                Text ("\(challenge.challengeName) ").font(
-                    Font.custom("SF Pro", size: 24)
+                Text ("\(challenge.challengeName) ").bold().font(.system(size: 25))
                     // .weight(.black)
-                )
+                
                 .multilineTextAlignment(.center)
                 // .foregroundColor(Constants.BlkText)
                 .frame(width: 294, height: 50, alignment: .top)
@@ -89,8 +90,9 @@ struct ChallengeView: View {
                     }  }
                         //.padding(.bottom , 100 )
                         //  .padding(.leading ,120)
+               // padding()
 
-                        Text("Challenge timeline :").foregroundColor(.gray)
+                        Text("\nChallenge timeline :").foregroundColor(.gray)
                         
                         Text("\(formatTime(challenge.ChallengeStartDate)) -  \(formatTime(challenge.ChallengeEndDate))").bold()
                         
@@ -98,6 +100,24 @@ struct ChallengeView: View {
                         
                         Text("Participants Limit :").foregroundColor(.gray)
                         Text("50 Person").bold()
+                
+                VStack(alignment: .leading) {
+                      Text("Challenge Rules: ")
+                          .bold()
+                          .font(.system(size: 20)) // Customize the font size here
+                          .frame(height: 35, alignment: .leading)
+                      
+                      Text("""
+                      1. The number of participants is limited to 50 people only.
+                      2. Each participant may submit only one picture for consideration.
+                      3. Voting is mandatory to be part of this challenge; failure to vote will result in disqualification.
+                      4. Participants cannot vote for their own picture.
+                      """)
+                          .font(.system(size: 16)) // Customize the font size here
+                          .fontWeight(.thin).frame(alignment: .center)
+                  }
+                .padding(.horizontal ,70)
+              
                         
                     }.sheet(isPresented: $showImagePicker, onDismiss: savePost) {
                         ImagePicker(selectedImage: self.$selectedImage, sourceType: .photoLibrary)

@@ -12,7 +12,7 @@ struct CloudKidGameCenterTestApp: App {
     @StateObject var VM = ChallengeViewModel()
     var body: some Scene {
         WindowGroup {
-            AddingPointsView()
+            ContentView()
                 .environmentObject(VM)
         }
     }
