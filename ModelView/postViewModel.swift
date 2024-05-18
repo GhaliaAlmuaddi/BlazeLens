@@ -40,7 +40,7 @@ class postViewModel: ObservableObject{
         return highestVotedPost
     }
     
-    func fetchposts() {
+     func fetchposts() {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "challengePost", predicate: predicate)
         

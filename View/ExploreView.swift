@@ -135,124 +135,32 @@ struct ExploreView: View {
                           }
                       }
                       
-                      
                       VStack{
-                          Text("Explore past challenges: ")
+                          Text("Explore past challenges:")
                               .font(Font.custom("SF Pro", size: 16).weight(.bold))
                               .foregroundColor(.black)
                               .multilineTextAlignment(.leading)
                               .padding(.trailing, 200)
-                              .padding()
-                          ScrollView(.horizontal) {
-                              HStack(spacing: 8) {
-                                  
-                                  HStack(spacing: 8) {
-                                      ZStack() {
-                                          Rectangle()
-                                              .foregroundColor(.clear)
-                                              .frame(width: 291, height: 396)
-                                              .offset(x: 0, y: -0)
-                                          VStack(alignment: .leading, spacing: 7) {
-                                              
-                                              VStack(spacing: 0) {
-                                                  Text("Coffee cup")
-                                                      .font(Font.custom("SF Pro", size: 24).weight(.bold))
-                                                      .foregroundColor(Color(red: 0.05, green: 0.23, blue: 0.61))
-                                                  ZStack() {
-                                                      
-                                                      Text("Winner: gh_12")
-                                                          .font(Font.custom("SF Pro", size: 20).weight(.bold))
-                                                          .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
-                                                          .offset(x: 0, y: -0.70)
-                                                      Rectangle()
-                                                          .foregroundColor(.clear)
-                                                          .frame(width: 32.18, height: 21.32)
-                                                          .offset(x: 33.61, y: 0.17)
-                                                  }
-                                                  .frame(width: 216.50, height: 21.66)
-                                              }
-                                              .frame(width: 344, height: 94)
-                                              .background(Color(red: 0.95, green: 0.95, blue: 0.94))
-                                          }
-                                          .background(
-                                            NavigationLink(destination: ExploerView2()) {
-                                                Image("coffee1")
-                                                
-                                            }
-                                            
-                                            
-                                          )
-                                          .offset(x: 2.50, y: 151)
+                              .padding(.top, 10)
+                          ScrollView(.horizontal, showsIndicators: false) {
+                              HStack (spacing: 10){
+                                  ForEach(ChallengeVM.Challenges.indices, id: \.self) { index in
+                                      let challenge = ChallengeVM.Challenges[index]
+                                      //Text ("\(challenge.challengeName)")
+                                      let high = viewModel.posts.filter { $0.challengeId?.recordID == challenge.id }
+                                      if let highestVotedPost = viewModel.highestVotedPost(posts: high) {
+                                          //Text("Highest voted photo: \(highestVotedPost.voting_Counter)")
+                                          exploreCard(highestVotedPost: highestVotedPost, challenge: challenge)
+                                                                                    
+                                      } else {
+                                          Text("No posts found for this challenge")
                                       }
-                                      .frame(width: 291, height: 396)
-                                      .background(Image(systemName: "doc"))
-                                      
-                                      .cornerRadius(24)
-                                      .shadow(
-                                        color: Color(red: 0, green: 0, blue: 0, opacity: 0.12), radius: 5, y: 4
-                                      )
-                                      
-                                      
-                                      VStack(spacing: 0) {
-                                          VStack(alignment: .leading, spacing: 7) {
-                                              VStack(spacing: 0) {
-                                                  
-                                                  Text("Sunset")
-                                                      .font(Font.custom("SF Pro", size: 24).weight(.bold))
-                                                      .foregroundColor(Color(red: 0.05, green: 0.23, blue: 0.61))
-                                                  Text("Winner: ra-n33")
-                                                      .font(Font.custom("SF Pro", size: 20))
-                                                      .foregroundColor(.black)
-                                              }
-                                              .frame(width: 344, height: 94)
-                                              .background(Color(red: 0.95, green: 0.95, blue: 0.94))
-                                          }
-                                          .frame(width: 297, height: 94)
-                                      }
-                                      .padding(EdgeInsets(top: 255, leading: 0, bottom: 0, trailing: 28))
-                                      .frame(width: 296, height: 349)
-                                      .background(
-                                        Image("sun")
-                                            .resizable()
-                                            .frame(width:291, height: 396)
-                                      )
-                                      .cornerRadius(24)
-                                      .shadow(
-                                        color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 4, y: 4
-                                      )
-                                      
-                                      VStack(spacing: 0) {
-                                          VStack(alignment: .leading, spacing: 7) {
-                                              VStack(spacing: 0) {
-                                                  Text("Nature")
-                                                      .font(Font.custom("SF Pro", size: 24).weight(.bold))
-                                                      .foregroundColor(Color(red: 0.05, green: 0.23, blue: 0.61))
-                                                  Text("Winner: kh12")
-                                                      .font(Font.custom("SF Pro", size: 20))
-                                                      .foregroundColor(.black)
-                                              }
-                                              .frame(width: 344, height: 94)
-                                              .background(Color(red: 0.95, green: 0.95, blue: 0.94))
-                                          }
-                                          .frame(width: 297, height: 94)
-                                      }
-                                      .padding(EdgeInsets(top: 255, leading: 0, bottom: 0, trailing: 28))
-                                      .frame(width: 296, height: 349)
-                                      .background(
-                                        Image("flower")
-                                            .resizable()
-                                            .frame(width:291, height: 396)
-                                      )
-                                      .cornerRadius(24)
-                                      .shadow(
-                                        color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 4, y: 4
-                                      )
                                   }
-                                  //  .offset(x: 302.50, y: 155)
                               }
                           }
-                          //.offset(x: 0, y: 155)
-                      }
+                      
+                      
+                  }
                   }
                   }}.onAppear {
                       // Fetch challenges only if not already fetched
@@ -262,6 +170,8 @@ struct ExploreView: View {
                       
                       loadProfilePhoto()
                       authenticateWithGameCenter()
+                      //viewModel.fetchposts()
+                      
         }.navigationBarBackButtonHidden(true)
     }
    
@@ -411,7 +321,7 @@ struct ChallengeRow: View {
     struct ChallengeItemView: View {
         let challenge: ChallengeModel
         let buttonText: String
-        
+        @State private var playerName: String = ""
         @State private var playerID: String = ""
         var body: some View {
             Text (challenge.challengeName).font(.headline)
@@ -446,7 +356,7 @@ struct ChallengeRow: View {
            if buttonText == "Vote" {
                return AnyView(votePage(challengeId: challenge.id, challenge: challenge))
            } else {
-               return AnyView(ChallengeView(challenge: challenge, playerID: playerID))
+               return AnyView(ChallengeView(challenge: challenge, playerID: playerID, playerName: playerName))
            }
        }
 

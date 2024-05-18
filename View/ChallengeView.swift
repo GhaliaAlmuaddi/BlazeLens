@@ -29,6 +29,8 @@ struct ChallengeView: View {
     @State var challengeId: CKRecord.ID?
     @State private var challengeRecord: CKRecord?
   
+    @State private var fetchedPlayerName: String?
+    let playerName: String
     
     var body: some View {
         ZStack {
@@ -50,6 +52,7 @@ struct ChallengeView: View {
                     
                     if GKLocalPlayer.local.isAuthenticated {
                         self.showImagePicker = true
+                        fetchedPlayerName = GKLocalPlayer.local.displayName
                         fetchedPlayerID = GKLocalPlayer.local.playerID
                         savePost()
                         
@@ -125,6 +128,7 @@ struct ChallengeView: View {
             //  }
         }.onAppear {
             fetchPlayerID()
+            fetchPlayerName()
         }
     }
     
@@ -199,7 +203,7 @@ struct ChallengeView: View {
         record["voting_Counter"] = vote
         record["photo"] = photo
         record["user_id"] = fetchedPlayerID
-        
+        record["playerName"] = fetchedPlayerName
         record["challengeId"] = CKRecord.Reference(recordID: challengeId!, action: .none)
         //Set image
         return record
@@ -297,7 +301,36 @@ struct ChallengeView: View {
             
             container.publicCloudDatabase.add(queryOperation)
         }
+    
+    
+    func fetchPlayerName() {
+        let predicate = NSPredicate(format: "playerName == %@", playerName)
+        let query = CKQuery(recordType: "Player", predicate: predicate)
         
+        let queryOperation = CKQueryOperation(query: query)
+        queryOperation.desiredKeys = ["playerName"]
+        queryOperation.resultsLimit = 1 // Limit to retrieve only one record
+        
+        var playerNames: [String] = []
+        
+        queryOperation.recordFetchedBlock = { record in
+            if let playerName = record["playerName"] as? String {
+                playerNames.append(playerName)
+            }
+        }
+        
+        queryOperation.queryCompletionBlock = { cursor, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Error fetching player ID: \(error.localizedDescription)")
+                } else {
+                    self.fetchedPlayerName = playerNames.first
+                }
+            }
+        }
+        
+        container.publicCloudDatabase.add(queryOperation)
+    }
         
     }
 
