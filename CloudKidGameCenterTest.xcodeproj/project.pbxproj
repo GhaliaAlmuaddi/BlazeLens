@@ -37,6 +37,7 @@
 		908AAD7D2BDEBF3E00D3DBF9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908AAD7C2BDEBF3E00D3DBF9 /* ContentView.swift */; };
 		908AAD7F2BDEBF3F00D3DBF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908AAD7E2BDEBF3F00D3DBF9 /* Assets.xcassets */; };
 		908AAD822BDEBF3F00D3DBF9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908AAD812BDEBF3F00D3DBF9 /* Preview Assets.xcassets */; };
+		9090FA712BFA695700DCB592 /* ChallengepopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090FA702BFA695700DCB592 /* ChallengepopView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		908AAD7E2BDEBF3F00D3DBF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		908AAD812BDEBF3F00D3DBF9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		908AAD892BDEFC5D00D3DBF9 /* CloudKidGameCenterTest.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = CloudKidGameCenterTest.entitlements; path = CloudKidGameCenterTest/CloudKidGameCenterTest.entitlements; sourceTree = SOURCE_ROOT; };
+		9090FA702BFA695700DCB592 /* ChallengepopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengepopView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				391F8A1B2BF3E47400184CFB /* SplashView.swift */,
 				3908F4F12BF92F350045C455 /* Onboarding.swift */,
 				3908F4F32BF92FAD0045C455 /* NewPage.swift */,
+				9090FA702BFA695700DCB592 /* ChallengepopView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				907D04612BE18462006AF67A /* Date.swift in Sources */,
 				39572E452BE22EB600384B4A /* postModel.swift in Sources */,
 				39AD17FC2BF1FEB800BBFA05 /* votePop.swift in Sources */,
+				9090FA712BFA695700DCB592 /* ChallengepopView.swift in Sources */,
 				391F8A1E2BF3FA0D00184CFB /* ExploerView2.swift in Sources */,
 				39AD17FE2BF1FF7500BBFA05 /* todayPhotoChallenge.swift in Sources */,
 				906D92CF2BE0011400E2E1F5 /* AddingPointsView.swift in Sources */,

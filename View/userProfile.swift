@@ -18,7 +18,7 @@ struct userProfile: View {
     @State private var playerRank: Int = 0
     @State private var currentPlayerID: String?
     var body: some View {
-        NavigationStack {
+      //  NavigationStack {
             ZStack {
                 Color("BackgroundColor").ignoresSafeArea()
                     .toolbar {
@@ -133,7 +133,7 @@ struct userProfile: View {
                         .bold()
                 }
             }
-        }
+       // }
         .onAppear {
             authenticateWithGameCenter()
             viewModel.fetchposts()

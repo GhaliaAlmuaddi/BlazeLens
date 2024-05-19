@@ -39,12 +39,12 @@ struct votePage: View {
                 Color(.backgroungC)
                     .ignoresSafeArea()
                 VStack(alignment: .center, content: {
-                    Text("Voting start in")
+                    Text("Voting end at :")
                         .foregroundColor(.gray)
                         .font(.callout)
 
                     
-                    Text("\(formatTime(challenge.VotingStartDate))")
+                    Text("\(formatTime(challenge.VotingEndDate))")
                         .bold()
                         .font(.title2)
                     

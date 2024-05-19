@@ -48,7 +48,7 @@ struct Onboarding: View {
                         Spacer()
                         NavigationLink(destination: ContentView()) {
                             Text("Skip")
-                                .foregroundColor(.black)
+                                .foregroundColor(.blue)
                                 .padding()
                                 .bold()
                                 .background(Color.clear)
@@ -58,7 +58,7 @@ struct Onboarding: View {
                     }
                     Spacer()
                 }
-                .padding(.top, 10) // Adjust padding as needed
+                .padding(.top, -20) // Adjust padding as needed
                 
             }
             .navigationTitle("")

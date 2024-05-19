@@ -86,7 +86,8 @@ struct ExploreView: View {
                   VStack {
                       Text("")
                       let currentDate = Date()
-                      Text("Today's challenge :").padding(.trailing, 200)
+                      Text("Today's challenge :").multilineTextAlignment(.leading)
+                          .padding(.trailing, 200)
                       ZStack {
                           RoundedRectangle(cornerRadius: 30)
                               .frame(width: 291, height: 138)
@@ -147,6 +148,8 @@ struct ExploreView: View {
                                   ForEach(ChallengeVM.Challenges.indices, id: \.self) { index in
                                       let challenge = ChallengeVM.Challenges[index]
                                       //Text ("\(challenge.challengeName)")
+                                      
+                                      
                                       let high = viewModel.posts.filter { $0.challengeId?.recordID == challenge.id }
                                       if let highestVotedPost = viewModel.highestVotedPost(posts: high) {
                                           //Text("Highest voted photo: \(highestVotedPost.voting_Counter)")
@@ -162,16 +165,16 @@ struct ExploreView: View {
                       
                   }
                   }
-                  }}.onAppear {
-                      // Fetch challenges only if not already fetched
-                      if ChallengeVM.Challenges.isEmpty {
-                          ChallengeVM.fetchChallenges()
-                      }
-                      
-                      loadProfilePhoto()
-                      authenticateWithGameCenter()
-                      //viewModel.fetchposts()
-                      
+              }.onAppear {
+                  // Fetch challenges only if not already fetched
+                  if ChallengeVM.Challenges.isEmpty {
+                      ChallengeVM.fetchChallenges()
+                  }
+                  authenticateWithGameCenter()
+                  loadProfilePhoto()
+                  calculateTotalVotingCount()
+                  //viewModel.fetchposts()
+              }
         }.navigationBarBackButtonHidden(true)
     }
    
@@ -213,7 +216,9 @@ struct ExploreView: View {
              } else {
                  print("Local player authenticated")
                  isGameCenterAuthenticated = true
-                 currentPlayerID = GKLocalPlayer.local.playerID // Set currentPlayerID upon successful authentication
+                 currentPlayerID = GKLocalPlayer.local.playerID
+                 loadProfilePhoto()
+                 // Set currentPlayerID upon successful authentication
               //   calculateTotalVotingCount() // Calculate the total voting count once the player ID is set
              }
          }
