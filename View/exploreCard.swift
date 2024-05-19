@@ -21,7 +21,7 @@ struct exploreCard: View {
                             Rectangle()
                                 .foregroundColor(.clear)
                                 .frame(width: 291, height: 396)
-                            NavigationLink(destination: ExploerView2()) {
+                            NavigationLink(destination: ExploerView2(challengeId: challenge.id)) {
                                 if let asset = highestVotedPost.photo, let data = try? Data(contentsOf: asset.fileURL!) {
                                     Image(uiImage: UIImage(data: data)!)
                                         .resizable()
