@@ -46,7 +46,7 @@ struct Onboarding: View {
                 VStack {
                     HStack {
                         Spacer()
-                        NavigationLink(destination: ContentView()) {
+                        NavigationLink(destination: ExploreView()) {
                             Text("Skip")
                                 .foregroundColor(.blue)
                                 .padding()

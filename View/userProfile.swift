@@ -136,7 +136,7 @@ struct userProfile: View {
        // }
         .onAppear {
             authenticateWithGameCenter()
-            viewModel.fetchposts()
+           // viewModel.fetchposts()
             loadProfilePhoto()
             loadGameCenterScore()
             //print(GKLocalPlayer.local.gamePlayerID)
@@ -162,7 +162,7 @@ struct userProfile: View {
      }
     
     func loadGameCenterScore() {
-        let leaderboardID = "055001"
+        let leaderboardID = "1234"
 
         let leaderboardRequest = GKLeaderboard()
         leaderboardRequest.identifier = leaderboardID
@@ -201,7 +201,7 @@ struct userProfile: View {
         authenticateWithGameCenter()
 
         // Replace "your_leaderboard_id" with your actual leaderboard ID
-        let leaderboardID = "055001"
+        let leaderboardID = "1234"
 
         loadPlayerRank(for: leaderboardID) { rank, error in
             if let error = error {

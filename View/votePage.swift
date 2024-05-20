@@ -34,7 +34,7 @@ struct votePage: View {
     
     var body: some View {
         NavigationStack{
-
+            
             ZStack{
                 Color(.backgroungC)
                     .ignoresSafeArea()
@@ -42,7 +42,7 @@ struct votePage: View {
                     Text("Voting end at :")
                         .foregroundColor(.gray)
                         .font(.callout)
-
+                    
                     
                     Text("\(formatTime(challenge.VotingEndDate))")
                         .bold()
@@ -51,48 +51,48 @@ struct votePage: View {
                     
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(viewModel.posts.indices, id: \.self) { index in
-                          
-                            if let postChallengeId = viewModel.posts[index].challengeId,
-                                  postChallengeId.recordID == challengeId{
-                                      GridImageView(index: index, challengeId: challenge.id)
-                                  }
+                            ForEach(viewModel.posts.indices, id: \.self) { index in
+                                
+                                if let postChallengeId = viewModel.posts[index].challengeId,
+                                   postChallengeId.recordID == challengeId{
+                                    GridImageView(index: index, challengeId: challenge.id)
+                                }
                             }
+                        }
+                        
+                        
+                        
+                        
                     }
-
-                            
-                       
-                                       
-                                   }
-
+                    
                     NavigationLink(destination: votePop(), isActive: $isShowingPopUp) {
-                                      EmptyView()
-                                  }
-                              
-
-                              Button("Submit voting"){
-
-                                  isShowingPopUp = true
-                                  // Clear the selectedPhotos set after submitting the votes
-                                 // selectedPhotos.removeAll()
-                              }
-                              //.frame(width: 343, height: 60)
-                              .font(Font.custom("SF Pro", size: 16).weight(.bold))
-                              .lineSpacing(25.60)
-                              .foregroundColor(.white)
-                              .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-                              .frame(width: 343, height: 60)
-                              .background(
-                                  LinearGradient(gradient: Gradient(colors: [Color(red: 0.05, green: 0.23, blue: 0.61), Color(red: 0.24, green: 0.50, blue: 0.85)]), startPoint: .top, endPoint: .bottom)
-                              )
-                              .cornerRadius(24)
-//                              .background(.buttoncolor)
-//                              .cornerRadius(24)
-//                              .foregroundColor(.white)
-//                              .bold()
-//                              .padding()
-
-                           
+                        EmptyView()
+                    }
+                    
+                    
+                    Button("Submit voting"){
+                        
+                        isShowingPopUp = true
+                        // Clear the selectedPhotos set after submitting the votes
+                        // selectedPhotos.removeAll()
+                    }
+                    //.frame(width: 343, height: 60)
+                    .font(Font.custom("SF Pro", size: 16).weight(.bold))
+                    .lineSpacing(25.60)
+                    .foregroundColor(.white)
+                    .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                    .frame(width: 343, height: 60)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [Color(red: 0.05, green: 0.23, blue: 0.61), Color(red: 0.24, green: 0.50, blue: 0.85)]), startPoint: .top, endPoint: .bottom)
+                    )
+                    .cornerRadius(24)
+                    //                              .background(.buttoncolor)
+                    //                              .cornerRadius(24)
+                    //                              .foregroundColor(.white)
+                    //                              .bold()
+                    //                              .padding()
+                    
+                    
                 })
                 .overlay(
                     ZStack{
@@ -103,23 +103,34 @@ struct votePage: View {
                 )
                 .environmentObject(viewModel)
             }
-        
-        .onAppear {
-            viewModel.fetchposts()
             
-        }
-        .toolbar {
-            ToolbarItem(placement: .principal) {
+            .onAppear {
+                viewModel.fetchposts()
+                
+            }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
                     VStack {
                         Text("Challenge")
                             .bold()
-                            
+                        
                     }
                 }
-        }
-    }.navigationBarBackButtonHidden(true)
-           
+            }
+        }.navigationBarBackButtonHidden(true)
+        
+        
     }
+        func formatTime(_ date: Date) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            dateFormatter.timeZone = TimeZone(identifier: "Asia/Riyadh")
+            
+            return dateFormatter.string(from: date)
+        }
+        
+        
+    
     
    
     
