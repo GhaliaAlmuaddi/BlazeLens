@@ -180,7 +180,7 @@ struct ExploreView: View {
                 loadProfilePhoto()
                 if (isGameCenterAuthenticated){
                     calculateTotalVotingCount()
-                    //viewModel.fetchposts()
+                    viewModel.fetchposts()
                 }
                 else {
                     authenticateWithGameCenter()

@@ -65,25 +65,16 @@ struct ChallengeView: View {
                 
                 
                 
-                
                 Button(action: {
-                    
-                    if GKLocalPlayer.local.isAuthenticated {
-                        self.showImagePicker = true
-                        fetchedPlayerName = GKLocalPlayer.local.displayName
-                        fetchedPlayerID = GKLocalPlayer.local.playerID
-                        savePost()
-                        
-                    } else {
-                        // Present Game Center login view
-                        authenticateWithGameCenter()
-                    }
-
-                    
-                    
-                    
-                    
-                }) {
+                                   if GKLocalPlayer.local.isAuthenticated {
+                                       self.showImagePicker = true
+                                       fetchedPlayerName = GKLocalPlayer.local.displayName
+                                       fetchedPlayerID = GKLocalPlayer.local.playerID
+                                       savePost()
+                                   } else {
+                                       authenticateWithGameCenter()
+                                   }
+                               }) {
                     
                     
                     
@@ -143,14 +134,14 @@ struct ChallengeView: View {
                                        EmptyView()
                                    }
                                }
-                               .sheet(isPresented: $showImagePicker, onDismiss: {
-                                   if selectedImage != nil {
-                                       imageSelected = true
-                                       savePost()
-                                   }
-                               }) {
-                                   ImagePicker(selectedImage: self.$selectedImage, sourceType: .photoLibrary)
-                               }
+            .sheet(isPresented: $showImagePicker, onDismiss: {
+                           if selectedImage != nil {
+                               imageSelected = true
+                               savePost()
+                           }
+                       }) {
+                           ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
+                       }
             //  }
         }.onAppear {
             fetchPlayerID()

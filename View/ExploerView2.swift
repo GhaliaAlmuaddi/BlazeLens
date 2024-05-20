@@ -46,10 +46,12 @@ struct ExploerView2: View {
  
                 ScrollView {
                     
-                    ForEach(topPosts, id: \.id) { post in
-                        PostView(post: post)
-                    }
-  
+//                    ForEach(topPosts, id: \.id) { index, post in
+//                        PostView(post: post, index: index + 1)
+//                    }
+                    ForEach(Array(topPosts.enumerated()), id: \.element.id) { (index, post) in
+                                            PostView(post: post, index: index + 1)
+                                        }
                 }
                 
             }
@@ -66,7 +68,7 @@ struct ExploerView2: View {
 //                        }
 //                    }
                 
-                fetchTopPosts(for: challengeId) { posts, error in
+                viewModel.fetchTopPosts(for: challengeId) { posts, error in
                                if let posts = posts {
                                    topPosts = posts
                                } else if let error = error {
@@ -77,38 +79,7 @@ struct ExploerView2: View {
                 
             }
     }
-    func fetchTopPosts(for challengeId: CKRecord.ID, completion: @escaping ([postModel]?, Error?) -> Void) {
-        let container = CKContainer.default()
-        let publicDatabase = container.publicCloudDatabase
-        
-        // Create a query to fetch posts for the specific challenge
-        let predicate = NSPredicate(format: "challengeId == %@", challengeId)
-        let query = CKQuery(recordType: "challengePost", predicate: predicate)
-        
-        // Sort the results by voting_Counter in descending order
-        query.sortDescriptors = [NSSortDescriptor(key: "voting_Counter", ascending: false)]
-        
-        // Perform the query
-        publicDatabase.perform(query, inZoneWith: nil) { records, error in
-            if let error = error {
-                completion(nil, error)
-                return
-            }
-            
-            guard let records = records else {
-                completion(nil, nil)
-                return
-            }
-            
-            // Map the records to postModel
-            let posts = records.map { postModel(record: $0) }
-            
-            // Get the top 3 posts
-            let topPosts = Array(posts.prefix(3))
-            
-            completion(topPosts, nil)
-        }
-    }
+   
     
 //    func fetchTopPosts(completion: @escaping ([postModel]?, Error?) -> Void) {
 //        let container = CKContainer.default()
@@ -145,6 +116,7 @@ struct ExploerView2: View {
     struct PostView: View {
         let post: postModel
         
+            let index: Int
         var body: some View {
             ZStack {
                 Rectangle()
@@ -182,11 +154,11 @@ struct ExploerView2: View {
                 .cornerRadius(24)
                 .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.12), radius: 5, y: 4)
                 
-                Image("winner2")
+                Image("win\(index)")
                     .resizable()
                     .foregroundColor(.clear)
-                    .frame(width: 120.80, height: 153)
-                    .offset(x: -115, y: -138)
+                    .frame(width: 110, height: 140)
+                    .offset(x: -115, y: -127)
             }
         }
     }

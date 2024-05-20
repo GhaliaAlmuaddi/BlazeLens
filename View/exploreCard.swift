@@ -21,6 +21,20 @@ struct exploreCard: View {
                             Rectangle()
                                 .foregroundColor(.clear)
                                 .frame(width: 291, height: 396)
+//                            if let challengeId = challenge.challengId {
+//                                            NavigationLink(destination: ExploerView2(challengeId: challengeId)) {
+//                                                if let asset = highestVotedPost.photo, let data = try? Data(contentsOf: asset.fileURL!) {
+//                                                    Image(uiImage: UIImage(data: data)!)
+//                                                        .resizable()
+//                                                        .frame(width: 291, height: 369)
+//                                                        .cornerRadius(24)
+//                                                } else {
+//                                                    Text("Failed to load photo")
+//                                                }
+//                                            }
+//                                        } else {
+//                                            Text("Invalid challenge ID")
+//                                        }
                             NavigationLink(destination: ExploerView2(challengeId: challenge.id)) {
                                 if let asset = highestVotedPost.photo, let data = try? Data(contentsOf: asset.fileURL!) {
                                     Image(uiImage: UIImage(data: data)!)

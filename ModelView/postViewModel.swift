@@ -21,6 +21,38 @@ class postViewModel: ObservableObject{
     init() {
         fetchposts()
     }
+    func fetchTopPosts(for challengeId: CKRecord.ID, completion: @escaping ([postModel]?, Error?) -> Void) {
+        let container = CKContainer.default()
+        let publicDatabase = container.publicCloudDatabase
+        
+        // Create a query to fetch posts for the specific challenge
+        let predicate = NSPredicate(format: "challengeId == %@", challengeId)
+        let query = CKQuery(recordType: "challengePost", predicate: predicate)
+        
+        // Sort the results by voting_Counter in descending order
+        query.sortDescriptors = [NSSortDescriptor(key: "voting_Counter", ascending: false)]
+        
+        // Perform the query
+        publicDatabase.perform(query, inZoneWith: nil) { records, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            
+            guard let records = records else {
+                completion(nil, nil)
+                return
+            }
+            
+            // Map the records to postModel
+            let posts = records.map { postModel(record: $0) }
+            
+            // Get the top 3 posts
+            let topPosts = Array(posts.prefix(3))
+            
+            completion(topPosts, nil)
+        }
+    }
     
     func highestVotedPost(posts: [postModel]) -> postModel? {
         guard !posts.isEmpty else {
