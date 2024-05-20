@@ -361,7 +361,7 @@ struct ChallengeRow: View {
            if buttonText == "Vote" {
                return AnyView(votePage(challengeId: challenge.id, challenge: challenge))
            } else {
-               return AnyView(ChallengeView(challenge: challenge, playerID: playerID, playerName: playerName))
+               return AnyView(ChallengeView(challenge: challenge,playerID: playerID, challengeId: challenge.id, playerName: playerName))
            }
        }
 
