@@ -150,7 +150,13 @@ struct ExploreView: View {
                                       //Text ("\(challenge.challengeName)")
                                       
                                       
-                                      let high = viewModel.posts.filter { $0.challengeId?.recordID == challenge.id }
+//                                      let high = viewModel.posts.filter { $0.challengeId?.recordID == challenge.id }
+                                      let high = viewModel.posts.filter {
+                                          if let challengeId = $0.challengeId?.recordID.recordName {
+                                              return challengeId == challenge.challengId?.recordName
+                                          }
+                                          return false
+                                      }
                                       if let highestVotedPost = viewModel.highestVotedPost(posts: high) {
                                           //Text("Highest voted photo: \(highestVotedPost.voting_Counter)")
                                           exploreCard(highestVotedPost: highestVotedPost, challenge: challenge)

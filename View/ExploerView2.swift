@@ -164,7 +164,7 @@ struct ExploerView2: View {
                     Text("\(post.playerName)")
                         .font(Font.custom("SF Pro", size: 24).weight(.bold))
                         .foregroundColor(.black)
-                        .padding(.trailing, 190)
+                        .padding(.trailing, 100)
 
                     Text("\(post.voting_Counter)")
                         .font(Font.custom("SF Pro", size: 20).weight(.bold))
