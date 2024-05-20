@@ -28,7 +28,8 @@ struct SplashView: View {
                     navigateToNextPage = true
                 }
             }
-        }
+            
+        }.navigationBarBackButtonHidden(true)
     }
 }
 struct shortText:View {

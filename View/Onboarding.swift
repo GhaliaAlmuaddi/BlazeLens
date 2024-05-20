@@ -16,53 +16,50 @@ struct Onboarding: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 MagnifyGlass()
-                
+                    .toolbar {
+                     
+                     
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            NavigationLink {
+                                ExploreView()
+                            } label: {
+                                Text("Skip")
+                                    .foregroundColor(.blue)
+                                    .padding()
+                                    .bold()
+                                    .background(Color.clear)
+                                    .cornerRadius(10)
+                            }
+                        }
+                    }
                 VStack {
-                    VStack {
-                        HStack {
+                    VStack(alignment: .leading,spacing: 5) {
+                        
                             Text("Discover beauty in every shot")
                                 .font(.system(size: 24))
                                 .fontWeight(.bold)
                                 .padding(EdgeInsets())
                                 .foregroundColor(Color("Color 1"))
                                 .padding([.top, .leading], 7.0)
-                            Spacer()
-                        }
-                        HStack {
+                        
                             Text("Move the lens to reveal image details")
                                 .font(.system(size: 18))
                                 .padding(EdgeInsets())
                                 .foregroundColor(Color("Color 1"))
                                 .padding(.leading, 9.0)
-                            Spacer()
-                        }
+                        
                     }
-                    .padding(10)
-                    .offset(y: 30)
+                    //.padding(10)
+                    //.offset(y: 30)
                     
                     Spacer()
                 }
-                .offset(y:30)
-                VStack {
-                    HStack {
-                        Spacer()
-                        NavigationLink(destination: ExploreView()) {
-                            Text("Skip")
-                                .foregroundColor(.blue)
-                                .padding()
-                                .bold()
-                                .background(Color.clear)
-                                .cornerRadius(10)
-                        }
-                        .padding(.trailing, 20) // Adjust padding as needed
-                    }
-                    Spacer()
-                }
-                .padding(.top, -20) // Adjust padding as needed
+                .offset(y:-15)
+               
                 
             }
-            .navigationTitle("")
-        }
+            
+        }.navigationBarBackButtonHidden(true)
     }
 }
 

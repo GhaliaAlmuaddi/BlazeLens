@@ -36,7 +36,8 @@ struct ChallengeView: View {
     var body: some View {
         ZStack {
             Color(.backgroungC)
-                .ignoresSafeArea().toolbar {
+                .ignoresSafeArea()
+                .toolbar {
                     ToolbarItem(placement: .principal) {
                         Text("Today Challenge")
                             .bold()
