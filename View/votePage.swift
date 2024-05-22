@@ -104,10 +104,10 @@ struct votePage: View {
                 .environmentObject(viewModel)
             }
             
-            .onAppear {
-                viewModel.fetchposts()
-                
-            }
+//            .onAppear {
+//                viewModel.fetchposts()
+//                
+//            }
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     VStack {

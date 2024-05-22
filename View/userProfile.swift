@@ -126,6 +126,13 @@ struct userProfile: View {
                 }
             
                 .environmentObject(viewModel)
+            }   .onAppear {
+                authenticateWithGameCenter()
+               // viewModel.fetchposts()
+                loadProfilePhoto()
+                loadGameCenterScore()
+                //print(GKLocalPlayer.local.gamePlayerID)
+                displayPlayerRank()
             }
                         .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -134,14 +141,14 @@ struct userProfile: View {
                 }
             }
        // }
-        .onAppear {
-            authenticateWithGameCenter()
-           // viewModel.fetchposts()
-            loadProfilePhoto()
-            loadGameCenterScore()
-            //print(GKLocalPlayer.local.gamePlayerID)
-            displayPlayerRank()
-        }
+//        .onAppear {
+//            authenticateWithGameCenter()
+//           // viewModel.fetchposts()
+//            loadProfilePhoto()
+//            loadGameCenterScore()
+//            //print(GKLocalPlayer.local.gamePlayerID)
+//            displayPlayerRank()
+//        }
 
         .navigationBarBackButtonHidden(true)
     }
@@ -162,7 +169,7 @@ struct userProfile: View {
      }
     
     func loadGameCenterScore() {
-        let leaderboardID = "1234"
+        let leaderboardID = "055001"
 
         let leaderboardRequest = GKLeaderboard()
         leaderboardRequest.identifier = leaderboardID
@@ -201,7 +208,7 @@ struct userProfile: View {
         authenticateWithGameCenter()
 
         // Replace "your_leaderboard_id" with your actual leaderboard ID
-        let leaderboardID = "1234"
+        let leaderboardID = "055001"
 
         loadPlayerRank(for: leaderboardID) { rank, error in
             if let error = error {

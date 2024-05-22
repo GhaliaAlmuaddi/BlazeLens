@@ -196,7 +196,7 @@ struct ExploreView: View {
                 return
             }
             
-            let leaderboardID = "1234"
+            let leaderboardID = "055001"
             let scoreRequest = GKLeaderboard(players: [GKLocalPlayer.local])
             scoreRequest.identifier = leaderboardID
             
@@ -212,7 +212,7 @@ struct ExploreView: View {
         func displayLeaderboard() {
             loadGameCenterScore()
             let gcViewController = GKGameCenterViewController()
-            gcViewController.leaderboardIdentifier = "1234"
+            gcViewController.leaderboardIdentifier = "055001"
             gcViewController.viewState = .leaderboards
             gcViewController.gameCenterDelegate = makeCoordinator()
             UIApplication.shared.windows.first?.rootViewController?.present(gcViewController, animated: true, completion: nil)
@@ -260,7 +260,7 @@ struct ExploreView: View {
                 return
             }
             
-            let scoreReporter = GKScore(leaderboardIdentifier: "1234")
+            let scoreReporter = GKScore(leaderboardIdentifier: "055001")
             scoreReporter.value = Int64(score)
             
             GKScore.report([scoreReporter]) { error in

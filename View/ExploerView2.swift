@@ -21,7 +21,7 @@ struct ExploerView2: View {
                     .toolbar {
                         ToolbarItem(placement: .principal) {
                             VStack {
-                                Text("Challenge name")
+                                Text("Previous challenge")
                                     .bold()
                             }
                         }
@@ -30,7 +30,7 @@ struct ExploerView2: View {
                             NavigationLink {
                                 ExploreView()
                             } label: {
-                                Image(systemName: "arrowshape.backward.fill")
+                                Image( "arrow_back")
                                 
                                     .resizable()
                                 
